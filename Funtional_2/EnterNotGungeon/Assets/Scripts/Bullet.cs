@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 5;
+	public particle_timer particlefx;
     // Use this for initialization
     void Start()
     {
@@ -16,8 +17,13 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
-    }
+//     void OnTriggerEnter(Collider other)
+//    {
+//        Destroy(gameObject);
+//    }
+	void OnCollisionEnter(Collision other)
+	{
+		particle_timer newPartic = Instantiate (particlefx, transform.position, transform.rotation);
+		Destroy(gameObject);
+	}
 }
